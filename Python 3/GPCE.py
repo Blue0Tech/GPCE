@@ -1,3 +1,5 @@
+#GPCE (General Purpose Command Executor - a command line program which can be used for many purposes.
+#Copyright © 2019 Pruthvi Shrikaanth "Blue0Tech"
 #libraries and packages are imported
 import datetime
 import platform
