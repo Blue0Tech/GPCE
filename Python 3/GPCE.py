@@ -1,4 +1,4 @@
-#libraries and packages imported
+#libraries and packages are imported
 import datetime
 import platform
 import os
