@@ -56,6 +56,7 @@ namespace ConsoleApp1
                             Console.WriteLine("ftype: Types the contents of a file.");
                             Console.WriteLine("dir: Displays the path of the current directory that GPCE is running from.");
                             Console.WriteLine("fdl: Downloads a file from the Web to a local file.");
+                            Console.WriteLine("contact: Shows contact details to contact me.");
                         }
                         break;
                     case "now":
@@ -295,6 +296,11 @@ namespace ConsoleApp1
                         {
                             currentdir = Directory.GetCurrentDirectory();
                             Console.WriteLine("{0}", currentdir);
+                        }
+                        break;
+                    case "contact":
+                        {
+                            Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nSorry, my website is currently down.");
                         }
                         break;
                     case "fdl": /*This case is not protected from runtime errors yet*/
