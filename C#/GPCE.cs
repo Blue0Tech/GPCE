@@ -17,17 +17,10 @@ namespace ConsoleApp1
             var currentdir = "C:\\";
             string filename1;
             string filecontent1;
-            string connectionstatus = "y";
-            try
-            {
-                var connectiontest = new WebClient();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Could not connect to the Internet.");
-                connectionstatus = "n";
-                goto MainActivity;
-            }
+            string url;
+            WebClient fdl;
+            string fdlname;
+            string fdlcontent;
             Console.WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
         /*Main activity*/
         MainActivity:
@@ -303,20 +296,23 @@ namespace ConsoleApp1
                             Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nSorry, my website is currently down.");
                         }
                         break;
-                    case "fdl": /*This case is not protected from runtime errors yet*/
+                    case "fdl": /*This case is not very specific about runtime errors yet.*/
                         {
-                            if(connectionstatus=="n")
+                            try
                             {
-                                Console.WriteLine("Cannot execute this command while not connected to the Internet. To reconnect, please restart the program.");
+                                Console.WriteLine("Enter URL? ");
+                                url = Console.ReadLine();
+                                fdl = new WebClient();
+                                fdlcontent = fdl.DownloadString(url);
+                                Console.WriteLine("Enter filename? ");
+                                fdlname = Console.ReadLine();
+                                File.WriteAllText(fdlname, fdlcontent);
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine("Could not connect to the Internet. Please check your connection and the url entered was correct, and that the filename/path was correct.");
                                 goto MainActivity;
                             }
-                            Console.WriteLine("Enter URL? ");
-                            var url = Console.ReadLine();
-                            var fdl = new WebClient();
-                            string fdlcontent = fdl.DownloadString(url);
-                            Console.WriteLine("Enter filename? ");
-                            string fdlname = Console.ReadLine();
-                            File.WriteAllText(fdlname, fdlcontent);
                         }
                         break;
                     default:
