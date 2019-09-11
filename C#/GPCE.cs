@@ -293,7 +293,7 @@ namespace ConsoleApp1
                         break;
                     case "contact":
                         {
-                            Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nSorry, my website is currently down.");
+                            Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nWebsite: http://blue0tech.unaux.com/");
                         }
                         break;
                     case "fdl": /*This case is not very specific about runtime errors yet.*/
