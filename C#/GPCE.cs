@@ -76,8 +76,21 @@ namespace ConsoleApp1
                         break;
                     case "pcname":
                         {
-                            var pcname = Dns.GetHostName();
-                            Console.WriteLine("Your computer name is {0}", pcname);
+                            try
+                            {
+                                var pcname = Dns.GetHostName();
+                                Console.WriteLine("Your computer name is {0}", pcname);
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown exception.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+
+                            }
                         }
                         break;
                     case "sum":
@@ -87,9 +100,14 @@ namespace ConsoleApp1
                             {
                                 num1 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -97,9 +115,14 @@ namespace ConsoleApp1
                             {
                                 num2 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                             ans = num1 + num2;
@@ -113,9 +136,14 @@ namespace ConsoleApp1
                             {
                                 num1 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }   
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -123,9 +151,14 @@ namespace ConsoleApp1
                             {
                                 num2 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                             ans = num1 - num2;
@@ -139,9 +172,14 @@ namespace ConsoleApp1
                             {
                                 num1 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -149,9 +187,14 @@ namespace ConsoleApp1
                             {
                                 num2 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                             ans = num1 * num2;
@@ -165,27 +208,42 @@ namespace ConsoleApp1
                             {
                                 num1 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if(Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
                             try
                             {
                                 num2 = Convert.ToDecimal(Console.ReadLine());
+                                ans = num1 / num2;
                             }
-                            catch (Exception)
-                            {
-                                Console.WriteLine("You must enter a decimal number or integer.");
-                                goto MainActivity;
-                            }
-                            if (num2 == 0)
+                            catch (DivideByZeroException e)
                             {
                                 Console.WriteLine("You cannot divide by zero.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
-                            ans = num1 / num2;
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
                             Console.WriteLine("The quotient of {0} divided by {1} is {2}", num1, num2, ans);
                         }
                         break;
@@ -195,9 +253,14 @@ namespace ConsoleApp1
                         {
                             num1 = Convert.ToDecimal(Console.ReadLine());
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
                             Console.WriteLine("You must enter a decimal number or integer.");
+                            Console.WriteLine("Press Y to see the error.");
+                            if (Console.ReadKey().Key == ConsoleKey.Y)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                             goto MainActivity;
                         }
                         Console.WriteLine("Second number? ");
@@ -205,14 +268,24 @@ namespace ConsoleApp1
                         {
                             num2 = Convert.ToDecimal(Console.ReadLine());
                         }
-                        catch (Exception)
-                        {
-                            Console.WriteLine("You must enter a decimal number or integer.");
-                            goto MainActivity;
-                        }
-                        if (num2 == 0)
+                        catch (DivideByZeroException e)
                         {
                             Console.WriteLine("You cannot divide by zero.");
+                            Console.WriteLine("Press Y to see the error.");
+                            if (Console.ReadKey().Key == ConsoleKey.Y)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+                            goto MainActivity;
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("You must enter a decimal number or integer.");
+                            Console.WriteLine("Press Y to see the error.");
+                            if (Console.ReadKey().Key == ConsoleKey.Y)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
                             goto MainActivity;
                         }
                         ans = num1 % num2;
@@ -226,10 +299,34 @@ namespace ConsoleApp1
                             {
                                 filecontent2 = File.ReadAllText(filename1); /*To not allow the user to continue the program without checking for a valid file path*/
                             }
-                            catch (Exception)
+                            catch (DirectoryNotFoundException e)
                             {
                                 Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
+                            }
+                            catch (FileNotFoundException e)
+                            {
+                                Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                             }
                             Console.WriteLine("File content? ");
                             filecontent1 = Console.ReadLine();
@@ -247,9 +344,34 @@ namespace ConsoleApp1
                             {
                                 File.Delete(filename1);
                             }
-                            catch (Exception)
+                            catch (DirectoryNotFoundException e)
                             {
                                 Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            catch (FileNotFoundException e)
+                            {
+                                Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                         }
@@ -262,11 +384,38 @@ namespace ConsoleApp1
                             {
                                 System.Diagnostics.Process.Start(filename1);
                             }
-                            catch (Exception)
+                            catch (DirectoryNotFoundException e)
                             {
                                 Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
+                            catch (FileNotFoundException e)
+                            {
+                                Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+
+
                         }
                         break;
                     case "ftype":
@@ -277,17 +426,58 @@ namespace ConsoleApp1
                             {
                                 filecontent1 = File.ReadAllText(filename1);
                             }
-                            catch (Exception)
+                            catch (DirectoryNotFoundException e)
                             {
                                 Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
+                            catch (FileNotFoundException e)
+                            {
+                                Console.WriteLine("You must enter a valid file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+
+
                             Console.Write("{0}\n", filecontent1);
                         }
                         break;
                     case "dir":
                         {
-                            currentdir = Directory.GetCurrentDirectory();
+                            try
+                            {
+                                currentdir = Directory.GetCurrentDirectory();
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+
                             Console.WriteLine("{0}", currentdir);
                         }
                         break;
@@ -308,9 +498,32 @@ namespace ConsoleApp1
                                 fdlname = Console.ReadLine();
                                 File.WriteAllText(fdlname, fdlcontent);
                             }
-                            catch (Exception)
+                            catch (HttpListenerException e)
                             {
-                                Console.WriteLine("Could not connect to the Internet. Please check your connection and the url entered was correct, and that the filename/path was correct.");
+                                Console.WriteLine("Could not connect to the Internet. Please check your connection and the url entered was correct.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
+                            catch (FileNotFoundException e)
+                            {
+                                Console.WriteLine("Please check the file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
+                            catch (DirectoryNotFoundException e)
+                            {
+                                Console.WriteLine("Please check the file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
                                 goto MainActivity;
                             }
                         }
