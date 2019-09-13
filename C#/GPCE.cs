@@ -26,7 +26,7 @@ namespace ConsoleApp1
         MainActivity:
             do
             {
-                Console.Write(">");
+                Console.Write("GPCE >");
                 input = Console.ReadLine();
                 switch (input)
                 {
@@ -327,13 +327,22 @@ namespace ConsoleApp1
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                goto MainActivity;
                             }
                             Console.WriteLine("File content? ");
                             filecontent1 = Console.ReadLine();
                             filecontent1 = filecontent1.Replace("\\\\", "\\");
                             filecontent1 = filecontent1.Replace("\\n", "\n");
                             filecontent1 = filecontent1.Replace("\\t", "\t");
-                            File.WriteAllText(filename1, filecontent1);
+                            Console.WriteLine("Overwrite or append? O for overwrite ");
+                            if (Console.ReadKey().Key == ConsoleKey.O)
+                            {
+                                File.WriteAllText(filename1, filecontent1);
+                            }
+                            else
+                            {
+                                File.AppendAllText(filename1, filecontent1);
+                            }
                         }
                         break;
                     case "fdel":
@@ -456,9 +465,41 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
-
-
                             Console.Write("{0}\n", filecontent1);
+                        }
+                        break;
+                    case "fcreate":
+                        {
+                            Console.WriteLine("File name and path? ");
+                            filename1 = Console.ReadLine();
+                            try
+                            {
+                                if (File.Exists(filename1))
+                                {
+                                    Console.WriteLine("File already exists. Replace it? Y for yes ");
+                                    if (Console.ReadKey().Key == ConsoleKey.Y)
+                                    {
+                                        File.Delete(filename1);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Aborted.");
+                                        goto MainActivity;
+                                    }
+                                }
+                                File.Create(filename1).Dispose();
+                                Console.WriteLine("File created.");
+                            }
+                            catch(Exception e)
+                            {
+                                Console.WriteLine("Error. ");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
                         }
                         break;
                     case "dir":
