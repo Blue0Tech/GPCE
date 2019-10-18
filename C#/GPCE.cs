@@ -21,6 +21,7 @@ namespace ConsoleApp1
             WebClient fdl;
             string fdlname;
             string fdlcontent;
+            string tc, privacy, license;
             Console.WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
         /*Main activity*/
         MainActivity:
@@ -50,6 +51,9 @@ namespace ConsoleApp1
                             Console.WriteLine("dir: Displays the path of the current directory that GPCE is running from.");
                             Console.WriteLine("fdl: Downloads a file from the Web to a local file.");
                             Console.WriteLine("contact: Shows contact details to contact me.");
+                            Console.WriteLine("tc: Displays the terms and conditions");
+                            Console.WriteLine("privacy: Displays the privacy policy");
+                            Console.WriteLine("license: Displays the license");
                         }
                         break;
                     case "now":
@@ -83,7 +87,7 @@ namespace ConsoleApp1
                             }
                             catch (Exception e)
                             {
-                                Console.WriteLine("Unknown exception.");
+                                Console.WriteLine("Unknown error.");
                                 Console.WriteLine("Press Y to see the error.");
                                 if (Console.ReadKey().Key == ConsoleKey.Y)
                                 {
@@ -527,7 +531,7 @@ namespace ConsoleApp1
                             Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nWebsite: http://blue0tech.unaux.com/");
                         }
                         break;
-                    case "fdl": /*This case is not very specific about runtime errors yet.*/
+                    case "fdl":
                         {
                             try
                             {
@@ -560,6 +564,60 @@ namespace ConsoleApp1
                             catch (DirectoryNotFoundException e)
                             {
                                 Console.WriteLine("Please check the file name and path.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                        }
+                        break;
+                    case "tc":
+                        {
+                            try
+                            {
+                                tc = File.ReadAllText("tc.txt");
+                                Console.WriteLine(tc);
+                            } catch(Exception e)
+                            {
+                                Console.WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                        }
+                        break;
+                    case "privacy":
+                        {
+                            try
+                            {
+                                privacy = File.ReadAllText("privacy.txt");
+                                Console.WriteLine(privacy);
+                            } catch(Exception e)
+                            {
+                                Console.WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                        }
+                        break;
+                    case "license":
+                        {
+                            try
+                            {
+                                license = File.ReadAllText("license.txt");
+                                Console.WriteLine(license);
+                            } catch(Exception e)
+                            {
+                                Console.WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
                                 Console.WriteLine("Press Y to see the error.");
                                 if (Console.ReadKey().Key == ConsoleKey.Y)
                                 {
