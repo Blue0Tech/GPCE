@@ -4,7 +4,7 @@ using System;
 using System.Net;
 using System.IO;
 
-namespace ConsoleApp1
+namespace GPCE
 {
     class Program
     {
@@ -730,6 +730,8 @@ namespace ConsoleApp1
             } while (input != "exit");
             /*before closing the window*/
             Console.ReadKey(true);
+            logtext = "Program successfully terminated";
+            File.AppendAllText("log.txt", logtext);
         }
     }
 }
