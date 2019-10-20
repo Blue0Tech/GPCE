@@ -4,12 +4,16 @@ using System;
 using System.Net;
 using System.IO;
 
-namespace ConsoleApp1
+namespace GPCE
 {
     class Program
     {
         static void Main(string[] args)
         {
+            if (File.Exists("log.txt"))
+            {
+                File.Delete("log.txt");
+            }
             const string ProgramName = "General Purpose Command Executor", ExitMsg = "Terminating... Press any key to exit, Copyright 2019 Pruthvi Shrikaanth";
             string input, filecontent2;
             var osver = System.Environment.OSVersion;
@@ -22,6 +26,8 @@ namespace ConsoleApp1
             string fdlname;
             string fdlcontent;
             string tc, privacy, license;
+            var logtext = "Program successfully launched\n";
+            File.AppendAllText("log.txt", logtext);
             Console.WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
         /*Main activity*/
         MainActivity:
@@ -33,6 +39,8 @@ namespace ConsoleApp1
                 {
                     case "help":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("help: Displays a list of commands and how to use them");
                             Console.WriteLine("now: Displays the time and date");
                             Console.WriteLine("exit: Exits {0}", ProgramName);
@@ -54,32 +62,52 @@ namespace ConsoleApp1
                             Console.WriteLine("tc: Displays the terms and conditions");
                             Console.WriteLine("privacy: Displays the privacy policy");
                             Console.WriteLine("license: Displays the license");
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "now":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             var now = DateTime.Now;
                             Console.WriteLine("Now, it is {0}", now);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "exit":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine(ExitMsg);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "clear":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.Clear();
                             Console.WriteLine("Welcome to {0}, type help for a list of commands", ProgramName);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "osver":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("You are running {0}", osver);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "pcname":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             try
                             {
                                 var pcname = Dns.GetHostName();
@@ -95,10 +123,14 @@ namespace ConsoleApp1
                                 }
 
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "sum":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -131,10 +163,14 @@ namespace ConsoleApp1
                             }
                             ans = num1 + num2;
                             Console.WriteLine("The sum of {0} and {1} is {2}", num1, num2, ans);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "diff":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -167,10 +203,14 @@ namespace ConsoleApp1
                             }
                             ans = num1 - num2;
                             Console.WriteLine("The difference of {0} and {1} is {2}", num1, num2, ans);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "prod":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -203,10 +243,14 @@ namespace ConsoleApp1
                             }
                             ans = num1 * num2;
                             Console.WriteLine("The product of {0} and {1} is {2}", num1, num2, ans);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "div":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -249,54 +293,64 @@ namespace ConsoleApp1
                                 goto MainActivity;
                             }
                             Console.WriteLine("The quotient of {0} divided by {1} is {2}", num1, num2, ans);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "rem":
-                        Console.WriteLine("First number? ");
-                        try
                         {
-                            num1 = Convert.ToDecimal(Console.ReadLine());
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("You must enter a decimal number or integer.");
-                            Console.WriteLine("Press Y to see the error.");
-                            if (Console.ReadKey().Key == ConsoleKey.Y)
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
+                            Console.WriteLine("First number? ");
+                            try
                             {
-                                Console.WriteLine(e.Message);
+                                num1 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            goto MainActivity;
-                        }
-                        Console.WriteLine("Second number? ");
-                        try
-                        {
-                            num2 = Convert.ToDecimal(Console.ReadLine());
-                        }
-                        catch (DivideByZeroException e)
-                        {
-                            Console.WriteLine("You cannot divide by zero.");
-                            Console.WriteLine("Press Y to see the error.");
-                            if (Console.ReadKey().Key == ConsoleKey.Y)
+                            catch (Exception e)
                             {
-                                Console.WriteLine(e.Message);
+                                Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
                             }
-                            goto MainActivity;
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("You must enter a decimal number or integer.");
-                            Console.WriteLine("Press Y to see the error.");
-                            if (Console.ReadKey().Key == ConsoleKey.Y)
+                            Console.WriteLine("Second number? ");
+                            try
                             {
-                                Console.WriteLine(e.Message);
+                                num2 = Convert.ToDecimal(Console.ReadLine());
                             }
-                            goto MainActivity;
+                            catch (DivideByZeroException e)
+                            {
+                                Console.WriteLine("You cannot divide by zero.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("You must enter a decimal number or integer.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
+                            ans = num1 % num2;
+                            Console.WriteLine("The remainder of {0} divided by {1} is {2}", num1, num2, ans);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
-                        ans = num1 % num2;
-                        Console.WriteLine("The remainder of {0} divided by {1} is {2}", num1, num2, ans);
                         break;
                     case "fwrite":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -347,10 +401,14 @@ namespace ConsoleApp1
                             {
                                 File.AppendAllText(filename1, filecontent1);
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "fdel":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -387,10 +445,14 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "fopen":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -427,12 +489,14 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
-
-
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "ftype":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -470,10 +534,14 @@ namespace ConsoleApp1
                                 goto MainActivity;
                             }
                             Console.Write("{0}\n", filecontent1);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "fcreate":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("File name and path? ");
                             filename1 = Console.ReadLine();
                             try
@@ -504,10 +572,14 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "dir":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             try
                             {
                                 currentdir = Directory.GetCurrentDirectory();
@@ -524,15 +596,23 @@ namespace ConsoleApp1
                             }
 
                             Console.WriteLine("{0}", currentdir);
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "contact":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nWebsite: http://blue0tech.unaux.com/");
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "fdl":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             try
                             {
                                 Console.WriteLine("Enter URL? ");
@@ -571,10 +651,14 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "tc":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             try
                             {
                                 tc = File.ReadAllText("tc.txt");
@@ -589,10 +673,14 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "privacy":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             try
                             {
                                 privacy = File.ReadAllText("privacy.txt");
@@ -607,10 +695,14 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     case "license":
                         {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText("log.txt", logtext);
                             try
                             {
                                 license = File.ReadAllText("license.txt");
@@ -625,6 +717,8 @@ namespace ConsoleApp1
                                 }
                                 goto MainActivity;
                             }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText("log.txt", logtext);
                         }
                         break;
                     default:
@@ -636,6 +730,8 @@ namespace ConsoleApp1
             } while (input != "exit");
             /*before closing the window*/
             Console.ReadKey(true);
+            logtext = "Program successfully terminated";
+            File.AppendAllText("log.txt", logtext);
         }
     }
 }
