@@ -50,7 +50,7 @@ namespace GPCEinstaller
                 Console.WriteLine("Renamed directory to GPCE...\n");
                 logtext = "Renamed directory to GPCE\n";
                 File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                File.Delete("GPCE-master.zip");
+                File.Delete("GPCE.zip");
                 Console.WriteLine("Deleted unnecessary packages...\n");
                 logtext = "Deleted unnecessary packages\n";
                 File.AppendAllText("GPCEinstallationlog.txt", logtext);
