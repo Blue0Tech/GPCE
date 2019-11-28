@@ -1,4 +1,4 @@
-# [contents] Contents
+# Contents
 
 
 # GPCE
