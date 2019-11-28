@@ -651,6 +651,16 @@ namespace GPCE
                                 }
                                 goto MainActivity;
                             }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                goto MainActivity;
+                            }
                             logtext = input + " command successfully executed\n";
                             File.AppendAllText("log.txt", logtext);
                         }
