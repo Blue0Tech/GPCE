@@ -52,7 +52,7 @@ namespace GPCE
                             Console.WriteLine("prod: Gets the product of two numbers, input one at a time.");
                             Console.WriteLine("div: Gets the quotient of one number divided by another, input one at a time.");
                             Console.WriteLine("rem: Gets the remainder of one number divided by another, input one at a time.");
-                            Console.WriteLine("fwrite: Writes to a file. Type \\n for a new line, \\t for a tabspace, and \\\\ for a backslash. If the file doesn't exist, creates a new one.");
+                            Console.WriteLine("fwrite: Writes to a file. Type \\n for a new line, \\t for a tabspace, and \\\\ for a backslash. If the file doesn't exist, error is thrown.");
                             Console.WriteLine("fdel: Deletes a file.");
                             Console.WriteLine("fopen: Opens a file with the default program.");
                             Console.WriteLine("ftype: Types the contents of a file.");
