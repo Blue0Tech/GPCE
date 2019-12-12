@@ -17,7 +17,7 @@ namespace GPCEinstaller
                 }
                 var logtext = "Program successfully launched\n";
                 File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                Console.WriteLine("Install GPCE? Y for yes: ");
+                Console.WriteLine("Install GPCE (Note: GPCE will install in the working directory)? Y for yes: ");
                 if (Console.ReadKey().Key == ConsoleKey.Y)
                 {
                     logtext = "Started installation of GPCE\n";
@@ -27,7 +27,8 @@ namespace GPCEinstaller
                     Console.WriteLine("Connected to internet...\n");
                     logtext = "Connected to internet\n";
                     File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                    byte[] GPCEzipdl = GPCEdl.DownloadData("https://github.com/Blue0Tech/GPCE/archive/master.zip");
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    byte[] GPCEzipdl = GPCEdl.DownloadData("http://github.com/Blue0Tech/GPCE/archive/master.zip");
                     Console.WriteLine("Fetched information...\n");
                     logtext = "Fetched information\n";
                     File.AppendAllText("GPCEinstallationlog.txt", logtext);
@@ -35,9 +36,7 @@ namespace GPCEinstaller
                     Console.WriteLine("Downloaded GPCE...\n");
                     logtext = "Downloaded GPCE\n";
                     File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                    Console.WriteLine("Where do you want to install GPCE?");
-                    var installdir = Console.ReadLine();
-                    ZipFile.ExtractToDirectory("GPCE.zip", installdir);
+                    ZipFile.ExtractToDirectory("GPCE.zip", Directory.GetCurrentDirectory());
                     Console.WriteLine("Installed GPCE...\n");
                     logtext = "Installed GPCE\n";
                     File.AppendAllText("GPCEinstallationlog.txt", logtext);
@@ -66,6 +65,8 @@ namespace GPCEinstaller
                     File.Delete("GPCE/C#/GPCE.cs");
                     File.Delete("GPCE/C#/GPCEinstaller.exe");
                     File.Delete("GPCE/C#/GPCEinstaller.cs");
+					File.Delete("GPCE/GPCEinstaller.exe");
+					File.Delete("GPCE/index.html");
                     Console.WriteLine("Freed up storage...\n");
                     logtext = "Freed up storage...\n";
                     File.AppendAllText("GPCEinstallationlog.txt", logtext);
@@ -78,6 +79,8 @@ namespace GPCEinstaller
                     logtext = "Cancelled installation of GPCE\n";
                     File.AppendAllText("GPCEinstallationlog.txt", logtext);
                 }
+				Console.WriteLine("Press any key to exit, copyright 2019 Pruthvi Shrikaanth\n");
+				Console.ReadKey();
                 logtext = "Program successfully terminated\n";
                 File.AppendAllText("GPCEinstallationlog.txt", logtext);
             } catch(Exception e)
