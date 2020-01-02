@@ -29,6 +29,7 @@ namespace GPCE
             string fdlcontent;
             string tc, privacy, license;
             string extractfilename, extractdir;
+            string compressfolder, compressfilename;
             var logtext = "Program successfully launched\n";
             File.AppendAllText(logfilename, logtext);
             Console.WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
@@ -71,6 +72,7 @@ namespace GPCE
                             Console.WriteLine("privacy: Displays the privacy policy");
                             Console.WriteLine("license: Displays the license");
                             Console.WriteLine("extract: Extract an archive to a directory");
+                            Console.WriteLine("compress: Compress a directory to an archive");
                             logtext = input + " command successfully executed\n";
                             File.AppendAllText(logfilename, logtext);
                         }
@@ -843,6 +845,34 @@ namespace GPCE
                     				Console.WriteLine(e.Message);
                     			}
                     			logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
+                                goto MainActivity;
+                            }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText(logfilename, logtext);
+                        }
+                        break;
+                    case "compress":
+                        {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText(logfilename, logtext);
+                            Console.WriteLine("Directory to compress? ");
+                            compressfolder = Console.ReadLine();
+                            Console.WriteLine("Archive file name? ");
+                            compressfilename = Console.ReadLine();
+                            try
+                            {
+                                ZipFile.CreateFromDirectory(compressfolder, compressfilename);
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Unknown error.");
+                                Console.WriteLine("Press Y to see the error.");
+                                if (Console.ReadKey().Key == ConsoleKey.Y)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                                logtext = e.Message + "\n";
                                 File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }

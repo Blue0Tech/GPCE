@@ -223,6 +223,16 @@ Extracts an archive to a destination directory.
 
 ---
 
+## compress
+
+Compresses a directory into an archive.
+
+### syntax
+
+*compress* ENTER **directory to compress** ENTER **resultant archive name** ENTER
+
+---
+
 
 
 
