@@ -10,9 +10,10 @@ namespace GPCE
     {
         static void Main(string[] args)
         {
-            if (File.Exists("log.txt"))
+        	string logfilename = "GPCElog.txt";
+            if (File.Exists(logfilename))
             {
-                File.Delete("log.txt");
+                File.Delete(logfilename);
             }
             const string ProgramName = "General Purpose Command Executor", ExitMsg = "Terminating... Press any key to exit, Copyright 2019 Pruthvi Shrikaanth";
             string input, filecontent2;
@@ -27,7 +28,7 @@ namespace GPCE
             string fdlcontent;
             string tc, privacy, license;
             var logtext = "Program successfully launched\n";
-            File.AppendAllText("log.txt", logtext);
+            File.AppendAllText(logfilename, logtext);
             Console.WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
         /*Main activity*/
         MainActivity:
@@ -37,10 +38,15 @@ namespace GPCE
                 input = Console.ReadLine();
                 switch (input)
                 {
+                	case "":
+                	{
+                		/*Do nothing*/
+                	}
+                	break;
                     case "help":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("help: Displays a list of commands and how to use them");
                             Console.WriteLine("now: Displays the time and date");
                             Console.WriteLine("exit: Exits {0}", ProgramName);
@@ -54,7 +60,7 @@ namespace GPCE
                             Console.WriteLine("rem: Gets the remainder of one number divided by another, input one at a time.");
                             Console.WriteLine("fwrite: Writes to a file. Type \\n for a new line, \\t for a tabspace, and \\\\ for a backslash. If the file doesn't exist, error is thrown.");
                             Console.WriteLine("fdel: Deletes a file.");
-                            Console.WriteLine("fopen: Opens a file with the default program.");
+                            Console.WriteLine("fopen: Opens a file with the default program (only on Windows).");
                             Console.WriteLine("ftype: Types the contents of a file.");
                             Console.WriteLine("dir: Displays the path of the current directory that GPCE is running from.");
                             Console.WriteLine("fdl: Downloads a file from the Web to a local file.");
@@ -63,51 +69,51 @@ namespace GPCE
                             Console.WriteLine("privacy: Displays the privacy policy");
                             Console.WriteLine("license: Displays the license");
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "now":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             var now = DateTime.Now;
                             Console.WriteLine("Now, it is {0}", now);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "exit":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine(ExitMsg);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "clear":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.Clear();
                             Console.WriteLine("Welcome to {0}, type help for a list of commands", ProgramName);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "osver":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("You are running {0}", osver);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "pcname":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             try
                             {
                                 var pcname = Dns.GetHostName();
@@ -121,16 +127,18 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
-
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
+                                goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "sum":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -144,6 +152,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -159,18 +169,20 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             ans = num1 + num2;
                             Console.WriteLine("The sum of {0} and {1} is {2}", num1, num2, ans);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "diff":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -183,7 +195,9 @@ namespace GPCE
                                 if (Console.ReadKey().Key == ConsoleKey.Y)
                                 {
                                     Console.WriteLine(e.Message);
-                                }   
+                                }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -199,18 +213,20 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             ans = num1 - num2;
                             Console.WriteLine("The difference of {0} and {1} is {2}", num1, num2, ans);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "prod":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -224,6 +240,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -239,18 +257,20 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             ans = num1 * num2;
                             Console.WriteLine("The product of {0} and {1} is {2}", num1, num2, ans);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "div":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -264,6 +284,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -280,6 +302,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -290,17 +314,19 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("The quotient of {0} divided by {1} is {2}", num1, num2, ans);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "rem":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("First number? ");
                             try
                             {
@@ -314,6 +340,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("Second number? ");
@@ -329,6 +357,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -339,18 +369,20 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             ans = num1 % num2;
                             Console.WriteLine("The remainder of {0} divided by {1} is {2}", num1, num2, ans);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "fwrite":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -365,6 +397,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -375,6 +409,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -385,6 +421,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.WriteLine("File content? ");
@@ -393,22 +431,36 @@ namespace GPCE
                             filecontent1 = filecontent1.Replace("\\n", "\n");
                             filecontent1 = filecontent1.Replace("\\t", "\t");
                             Console.WriteLine("Overwrite or append? O for overwrite ");
-                            if (Console.ReadKey().Key == ConsoleKey.O)
-                            {
-                                File.WriteAllText(filename1, filecontent1);
-                            }
-                            else
-                            {
-                                File.AppendAllText(filename1, filecontent1);
+                            try {
+		                        if (Console.ReadKey().Key == ConsoleKey.O)
+		                        {
+		                            File.WriteAllText(filename1, filecontent1);
+		                        }
+		                        else
+		                        {
+		                            File.AppendAllText(filename1, filecontent1);
+		                        }
+		                    }
+		                    catch (Exception e)
+		                    {
+		                    	Console.WriteLine("Unknown error.");
+		                    	Console.WriteLine("Press Y to see the error.");
+		                    	if (Console.ReadKey().Key == ConsoleKey.Y)
+		                    	{
+		                    		Console.WriteLine(e.Message);
+		                    	}
+		                    	logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
+                                goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "fdel":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -423,6 +475,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -433,6 +487,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -443,16 +499,18 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "fopen":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -467,6 +525,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -477,6 +537,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -487,16 +549,18 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "ftype":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("File name? ");
                             filename1 = Console.ReadLine();
                             try
@@ -511,6 +575,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -521,6 +587,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -531,17 +599,19 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             Console.Write("{0}\n", filecontent1);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "fcreate":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("File name and path? ");
                             filename1 = Console.ReadLine();
                             try
@@ -570,16 +640,18 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "dir":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             try
                             {
                                 currentdir = Directory.GetCurrentDirectory();
@@ -592,27 +664,28 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
-
                             Console.WriteLine("{0}", currentdir);
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "contact":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             Console.WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nWebsite: http://blue0tech.unaux.com/");
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "fdl":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             try
                             {
                                 Console.WriteLine("Enter URL? ");
@@ -631,6 +704,9 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
+                                goto MainActivity;
                             }
                             catch (FileNotFoundException e)
                             {
@@ -640,6 +716,9 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
+                                goto MainActivity;
                             }
                             catch (DirectoryNotFoundException e)
                             {
@@ -649,6 +728,8 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -659,21 +740,24 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "tc":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             try
                             {
                                 tc = File.ReadAllText("tc.txt");
                                 Console.WriteLine(tc);
-                            } catch(Exception e)
+                            } 
+                            catch(Exception e)
                             {
                                 Console.WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
                                 Console.WriteLine("Press Y to see the error.");
@@ -681,21 +765,24 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "privacy":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             try
                             {
                                 privacy = File.ReadAllText("privacy.txt");
                                 Console.WriteLine(privacy);
-                            } catch(Exception e)
+                            } 
+                            catch(Exception e)
                             {
                                 Console.WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
                                 Console.WriteLine("Press Y to see the error.");
@@ -703,21 +790,24 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     case "license":
                         {
                             logtext = input + " command entered\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                             try
                             {
                                 license = File.ReadAllText("license.txt");
                                 Console.WriteLine(license);
-                            } catch(Exception e)
+                            } 
+                            catch(Exception e)
                             {
                                 Console.WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
                                 Console.WriteLine("Press Y to see the error.");
@@ -725,10 +815,12 @@ namespace GPCE
                                 {
                                     Console.WriteLine(e.Message);
                                 }
+                                logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }
                             logtext = input + " command successfully executed\n";
-                            File.AppendAllText("log.txt", logtext);
+                            File.AppendAllText(logfilename, logtext);
                         }
                         break;
                     default:
@@ -741,7 +833,7 @@ namespace GPCE
             /*before closing the window*/
             Console.ReadKey(true);
             logtext = "Program successfully terminated";
-            File.AppendAllText("log.txt", logtext);
+            File.AppendAllText(logfilename, logtext);
         }
     }
 }
