@@ -215,7 +215,7 @@ Displays license.
 
 ## extract
 
-Extracts an archive to a destination directory.
+Extracts a zip archive to a destination directory.
 
 ### syntax
 
@@ -225,7 +225,7 @@ Extracts an archive to a destination directory.
 
 ## compress
 
-Compresses a directory into an archive.
+Compresses a directory into a zip archive.
 
 ### syntax
 

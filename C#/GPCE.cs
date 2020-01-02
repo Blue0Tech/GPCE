@@ -71,8 +71,8 @@ namespace GPCE
                             Console.WriteLine("tc: Displays the terms and conditions");
                             Console.WriteLine("privacy: Displays the privacy policy");
                             Console.WriteLine("license: Displays the license");
-                            Console.WriteLine("extract: Extract an archive to a directory");
-                            Console.WriteLine("compress: Compress a directory to an archive");
+                            Console.WriteLine("extract: Extract a zip to a directory");
+                            Console.WriteLine("compress: Compress a directory to a zip archive");
                             logtext = input + " command successfully executed\n";
                             File.AppendAllText(logfilename, logtext);
                         }
