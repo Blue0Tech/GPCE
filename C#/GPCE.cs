@@ -3,6 +3,7 @@
 using System;
 using System.Net;
 using System.IO;
+using System.IO.Compression;
 
 namespace GPCE
 {
@@ -27,6 +28,7 @@ namespace GPCE
             string fdlname;
             string fdlcontent;
             string tc, privacy, license;
+            string extractfilename, extractdir;
             var logtext = "Program successfully launched\n";
             File.AppendAllText(logfilename, logtext);
             Console.WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
@@ -68,6 +70,7 @@ namespace GPCE
                             Console.WriteLine("tc: Displays the terms and conditions");
                             Console.WriteLine("privacy: Displays the privacy policy");
                             Console.WriteLine("license: Displays the license");
+                            Console.WriteLine("extract: Extract an archive to a directory");
                             logtext = input + " command successfully executed\n";
                             File.AppendAllText(logfilename, logtext);
                         }
@@ -816,6 +819,30 @@ namespace GPCE
                                     Console.WriteLine(e.Message);
                                 }
                                 logtext = e.Message + "\n";
+                                File.AppendAllText(logfilename, logtext);
+                                goto MainActivity;
+                            }
+                            logtext = input + " command successfully executed\n";
+                            File.AppendAllText(logfilename, logtext);
+                        }
+                        break;
+                        case "extract":
+                        {
+                            logtext = input + " command entered\n";
+                            File.AppendAllText(logfilename, logtext);
+                            Console.WriteLine("Archive file name? ");
+                    		extractfilename = Console.ReadLine();
+                    		Console.WriteLine("Archive extraction destination directory? ");
+                    		extractdir = Console.ReadLine();
+                    		try {
+                    			ZipFile.ExtractToDirectory(extractfilename,extractdir);
+                    		} catch(Exception e) {
+                    			Console.WriteLine("Unknown error.");
+                    			Console.WriteLine("Press Y to see the error.");
+                    			if(Console.ReadKey().Key == ConsoleKey.Y) {
+                    				Console.WriteLine(e.Message);
+                    			}
+                    			logtext = e.Message + "\n";
                                 File.AppendAllText(logfilename, logtext);
                                 goto MainActivity;
                             }

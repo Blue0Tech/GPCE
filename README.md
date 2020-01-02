@@ -213,6 +213,20 @@ Displays license.
 
 ---
 
+## extract
+
+Extracts an archive to a destination directory.
+
+### syntax
+
+*extract* ENTER **archive file name** ENTER **destination folder** ENTER
+
+---
+
+
+
+
+
 # Status
 
 GPCE is currently in active development. Work is currently being done on the C# edition, and there is error handling for the whole program. The Python 3 edition is not complete either, but development on that version will be on standby until otherwise stated. The first pre-release (v0.1) is out! See https://github.com/Blue0Tech/GPCE/releases/tag/v0.1.
