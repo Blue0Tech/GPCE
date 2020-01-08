@@ -2,59 +2,62 @@
 using System.IO;
 using System.Net;
 using System.IO.Compression;
+using static System.Console;
 
 namespace GPCEinstaller
 {
     class Program
     {
+        private const string Path = "GPCEinstallationlog.txt";
+
         static void Main(string[] args)
         {
             try
             {
-                if (File.Exists("GPCEinstallationlog.txt"))
+                if (File.Exists(Path))
                 {
-                    File.Delete("GPCEinstallationlog.txt");
+                    File.Delete(Path);
                 }
                 var logtext = "Program successfully launched\n";
-                File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                Console.WriteLine("Install GPCE (Note: GPCE will install in the working directory)? Y for yes: ");
-                if (Console.ReadKey().Key == ConsoleKey.Y)
+                File.AppendAllText(Path, logtext);
+                WriteLine("Install GPCE (Note: GPCE will install in the working directory)? Y for yes: ");
+                if (ReadKey().Key == ConsoleKey.Y)
                 {
                     logtext = "Started installation of GPCE\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                    Console.WriteLine("Installing...\n");
+                    File.AppendAllText(Path, logtext);
+                    WriteLine("Installing...\n");
                     var GPCEdl = new WebClient();
-                    Console.WriteLine("Connected to internet...\n");
+                    WriteLine("Connected to internet...\n");
                     logtext = "Connected to internet\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
 					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     byte[] GPCEzipdl = GPCEdl.DownloadData("http://github.com/Blue0Tech/GPCE/archive/master.zip");
-                    Console.WriteLine("Fetched information...\n");
+                    WriteLine("Fetched information...\n");
                     logtext = "Fetched information\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                     File.WriteAllBytes("GPCE.zip", GPCEzipdl);
-                    Console.WriteLine("Downloaded GPCE...\n");
+                    WriteLine("Downloaded GPCE...\n");
                     logtext = "Downloaded GPCE\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                     ZipFile.ExtractToDirectory("GPCE.zip", Directory.GetCurrentDirectory());
-                    Console.WriteLine("Installed GPCE...\n");
+                    WriteLine("Installed GPCE...\n");
                     logtext = "Installed GPCE\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                     if (Directory.Exists("GPCE"))
                     {
                         Directory.Delete("GPCE");
                     }
-                    Console.WriteLine("Cleaned up...\n");
+                    WriteLine("Cleaned up...\n");
                     logtext = "Cleaned up\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                     Directory.Move("GPCE-master", "GPCE");
-                    Console.WriteLine("Renamed directory to GPCE...\n");
+                    WriteLine("Renamed directory to GPCE...\n");
                     logtext = "Renamed directory to GPCE\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                     File.Delete("GPCE.zip");
-                    Console.WriteLine("Deleted unnecessary packages...\n");
+                    WriteLine("Deleted unnecessary packages...\n");
                     logtext = "Deleted unnecessary packages\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                     File.Delete("GPCE/LICENSE");
                     File.Delete("GPCE/README.md");
                     File.Delete("GPCE/Python 3/GPCE.py");
@@ -67,30 +70,28 @@ namespace GPCEinstaller
                     File.Delete("GPCE/C#/GPCEinstaller.cs");
 					File.Delete("GPCE/GPCEinstaller.exe");
 					File.Delete("GPCE/index.html");
-                    Console.WriteLine("Freed up storage...\n");
+                    WriteLine("Freed up storage...\n");
                     logtext = "Freed up storage...\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
-                    Console.WriteLine("Successfully installed GPCE...\n");
+                    File.AppendAllText(Path, logtext);
+                    WriteLine("Successfully installed GPCE...\n");
                     logtext = "Successfully installed GPCE\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                 }
                 else
                 {
                     logtext = "Cancelled installation of GPCE\n";
-                    File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                    File.AppendAllText(Path, logtext);
                 }
-				Console.WriteLine("Press any key to exit, copyright 2019 Pruthvi Shrikaanth\n");
-				Console.ReadKey();
+                WriteLine("Press any key to exit, copyright 2019 Pruthvi Shrikaanth\n");
+                ReadKey();
                 logtext = "Program successfully terminated\n";
-                File.AppendAllText("GPCEinstallationlog.txt", logtext);
+                File.AppendAllText(Path, logtext);
             } catch(Exception e)
             {
-                Console.WriteLine("There was an error. Press Y to see it.");
-                if(Console.ReadKey().Key ==ConsoleKey.Y)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                File.AppendAllText("GPCEinstallationlog.txt", e.Message);
+                WriteLine("There was an error. Press Y to see it.");
+                if (ReadKey().Key == ConsoleKey.Y)
+                    WriteLine(e.Message);
+                File.AppendAllText(Path, e.Message);
             }
         }
     }
