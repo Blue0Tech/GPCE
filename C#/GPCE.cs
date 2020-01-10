@@ -12,15 +12,26 @@ namespace GPCE
     class GPCE
     {
         private const string seeError = "Press Y to see the error.";
-        private const string cmdEx = " command successfully executed\n";
-        private const string cmdEnt = " command entered\n";
+        private const string cmdEx = " command successfully executed";
+        private const string cmdEnt = " command entered";
+        private const string ProgramName = "General Purpose Command Executor";
+        private const string ExitMsg = "Terminating... Press any key to exit, Copyright 2019 Pruthvi Shrikaanth";
+        private const string cmdFail = "command failed: ";
+        private const string logfilename = "GPCElog.txt";
+        private const string par = "Parameter entered";
+        private const string empty = "";
+        private const string key = "Key entered";
+
+        public static void Log(string var1, string var2)
+        {
+            string logtext = var1 + var2 + "\n";
+            AppendAllText(logfilename, logtext);
+        }
 
         static void Main(string[] args)
         {
-        	string logfilename = "GPCElog.txt";
             if (Exists(logfilename))
                 Delete(logfilename);
-            const string ProgramName = "General Purpose Command Executor", ExitMsg = "Terminating... Press any key to exit, Copyright 2019 Pruthvi Shrikaanth";
             string input, filecontent2;
             OperatingSystem osver = Environment.OSVersion;
             decimal num1, num2, ans;
@@ -52,8 +63,7 @@ namespace GPCE
                 	break;
                     case "help":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("help: Displays a list of commands and how to use them");
                             WriteLine("now: Displays the time and date");
                             WriteLine("exit: Exits {0}", ProgramName);
@@ -77,51 +87,42 @@ namespace GPCE
                             WriteLine("license: Displays the license");
                             WriteLine("extract: Extract a zip to a directory");
                             WriteLine("compress: Compress a directory to a zip archive");
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "now":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             DateTime now = DateTime.Now;
                             WriteLine("Now, it is {0}", now);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "exit":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine(ExitMsg);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "clear":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             Clear();
                             WriteLine("Welcome to {0}, type help for a list of commands", ProgramName);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "osver":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("You are running {0}", osver);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "pcname":
                         {
-                            logtext = input + cmdEnt;
+                            Log(input, cmdEnt);
                             AppendAllText(logfilename, logtext);
                             try
                             {
@@ -134,21 +135,19 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "sum":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("First number? ");
                             try
                             {
+                                Log(par, empty);
                                 num1 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -157,13 +156,13 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("Second number? ");
                             try
                             {
+                                Log(par, empty);
                                 num2 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -172,23 +171,21 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             ans = num1 + num2;
                             WriteLine("The sum of {0} and {1} is {2}", num1, num2, ans);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "diff":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("First number? ");
                             try
                             {
+                                Log(par, empty);
                                 num1 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -197,13 +194,13 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("Second number? ");
                             try
                             {
+                                Log(par, empty);
                                 num2 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -212,23 +209,21 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             ans = num1 - num2;
                             WriteLine("The difference of {0} and {1} is {2}", num1, num2, ans);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "prod":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("First number? ");
                             try
                             {
+                                Log(par, empty);
                                 num1 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -237,13 +232,13 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("Second number? ");
                             try
                             {
+                                Log(par, empty);
                                 num2 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -252,23 +247,21 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             ans = num1 * num2;
                             WriteLine("The product of {0} and {1} is {2}", num1, num2, ans);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "div":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("First number? ");
                             try
                             {
+                                Log(par, empty);
                                 num1 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -277,13 +270,13 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("Second number? ");
                             try
                             {
+                                Log(par, empty);
                                 num2 = Convert.ToDecimal(ReadLine());
                                 ans = num1 / num2;
                             }
@@ -293,8 +286,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -303,22 +295,20 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("The quotient of {0} divided by {1} is {2}", num1, num2, ans);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "rem":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("First number? ");
                             try
                             {
+                                Log(par, empty);
                                 num1 = Convert.ToDecimal(ReadLine());
                             }
                             catch (Exception e)
@@ -327,13 +317,13 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("Second number? ");
                             try
                             {
+                                Log(par, empty);
                                 num2 = Convert.ToDecimal(ReadLine());
                             }
                             catch (DivideByZeroException e)
@@ -342,8 +332,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -352,21 +341,19 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             ans = num1 % num2;
                             WriteLine("The remainder of {0} divided by {1} is {2}", num1, num2, ans);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "fwrite":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("File name? ");
+                            Log(par, empty);
                             filename1 = ReadLine();
                             try
                             {
@@ -378,8 +365,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -388,8 +374,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -398,17 +383,18 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("File content? ");
+                            Log(par, empty);
                             filecontent1 = ReadLine();
                             filecontent1 = filecontent1.Replace("\\\\", "\\");
                             filecontent1 = filecontent1.Replace("\\n", "\n");
                             filecontent1 = filecontent1.Replace("\\t", "\t");
                             WriteLine("Overwrite or append? O for overwrite ");
                             try {
+                                Log(key, empty);
                                 if (ReadKey().Key == ConsoleKey.O)
                                     WriteAllText(filename1, filecontent1);
                                 else
@@ -420,19 +406,17 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "fdel":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("File name? ");
+                            Log(par, empty);
                             filename1 = ReadLine();
                             try
                             {
@@ -444,8 +428,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -454,8 +437,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -464,19 +446,17 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "fopen":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("File name? ");
+                            Log(par, empty);
                             filename1 = ReadLine();
                             try
                             {
@@ -488,8 +468,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -498,8 +477,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -508,19 +486,17 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "ftype":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("File name? ");
+                            Log(par, empty);
                             filename1 = ReadLine();
                             try
                             {
@@ -532,8 +508,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -542,8 +517,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -552,28 +526,38 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             Write("{0}\n", filecontent1);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "fcreate":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("File name and path? ");
+                            Log(par, empty);
                             filename1 = ReadLine();
                             try
                             {
                                 if (Exists(filename1))
                                 {
                                     WriteLine("File already exists. Replace it? Y for yes ");
+                                    Log(key, empty);
                                     if (ReadKey().Key == ConsoleKey.Y)
-                                        Delete(filename1);
+                                        try {
+                                            Delete(filename1);
+                                        }
+                                        catch(Exception e)
+                                        {
+                                            WriteLine("Unknown error.");
+                                            WriteLine(seeError);
+                                            if (ReadKey().Key == ConsoleKey.Y)
+                                                WriteLine(e.Message);
+                                            Log(cmdFail, e.Message);
+                                            goto MainActivity;
+                                        }
                                     else
                                     {
                                         WriteLine("Aborted.");
@@ -589,18 +573,15 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "dir":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             try
                             {
                                 currentdir = Directory.GetCurrentDirectory();
@@ -611,35 +592,32 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             WriteLine("{0}", currentdir);
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "contact":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("Email: shrikaanthpruthvispareemail@gmail.com\nPhone: +447712343856\nWebsite: http://blue0tech.unaux.com/");
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "fdl":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             try
                             {
                                 WriteLine("Enter URL? ");
+                                Log(par, empty);
                                 url = ReadLine();
                                 fdl = new WebClient();
                                 fdlcontent = fdl.DownloadString(url);
                                 WriteLine("Enter filename? ");
+                                Log(par, empty);
                                 fdlname = ReadLine();
                                 WriteAllText(fdlname, fdlcontent);
                             }
@@ -651,8 +629,7 @@ namespace GPCE
                                 {
                                     WriteLine(e.Message);
                                 }
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (FileNotFoundException e)
@@ -661,8 +638,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (DirectoryNotFoundException e)
@@ -671,8 +647,7 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
                             catch (Exception e)
@@ -681,18 +656,15 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "tc":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             try
                             {
                                 tc = ReadAllText("tc.txt");
@@ -704,18 +676,15 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "privacy":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             try
                             {
                                 privacy = ReadAllText("privacy.txt");
@@ -727,18 +696,15 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "license":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             try
                             {
                                 license = ReadAllText("license.txt");
@@ -750,43 +716,41 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                         case "extract":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("Archive file name? ");
-                    		extractfilename = ReadLine();
+                            Log(par, empty);
+                            extractfilename = ReadLine();
                             WriteLine("Archive extraction destination directory? ");
-                    		extractdir = ReadLine();
+                            Log(par, empty);
+                            extractdir = ReadLine();
                     		try {
                     			ZipFile.ExtractToDirectory(extractfilename,extractdir);
                     		} catch(Exception e) {
                                 WriteLine("Unknown error.");
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y) WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     case "compress":
                         {
-                            logtext = input + cmdEnt;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEnt);
                             WriteLine("Directory to compress? ");
+                            Log(par, empty);
                             compressfolder = ReadLine();
                             WriteLine("Archive file name? ");
+                            Log(par, empty);
                             compressfilename = ReadLine();
                             try
                             {
@@ -798,12 +762,10 @@ namespace GPCE
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
-                                logtext = e.Message + "\n";
-                                AppendAllText(logfilename, logtext);
+                                Log(cmdFail, e.Message);
                                 goto MainActivity;
                             }
-                            logtext = input + cmdEx;
-                            AppendAllText(logfilename, logtext);
+                            Log(input, cmdEx);
                         }
                         break;
                     default:
