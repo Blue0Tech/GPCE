@@ -240,3 +240,7 @@ Compresses a directory into a zip archive.
 # Status
 
 GPCE is currently in active development. Work is currently being done on the C# edition, and there is error handling for the whole program. The Python 3 edition is not complete either, but development on that version will be on standby until otherwise stated. The first pre-release (v0.2) is out! See https://github.com/Blue0Tech/GPCE/releases/tag/v0.2
+
+# Known Issues
+
+* This issue is not a breaking issue, but with the C# version of the GPCE C# installer, the original LICENSE file and the empty C# folder are not deleted
