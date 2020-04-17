@@ -10,7 +10,7 @@ if [ "$key" = "Y" ] || [ "$key" = "y" ];then
     mv 'GPCE-master' 'GPCE'
     rm GPCE.zip
     rm -r 'GPCE/Python 3'
-    rm 'GPCE/GPCEinstaller.exe'
+    rm 'GPCE/GPCEinstallerC#.exe'
     rm 'GPCE/index.html'
     rm 'GPCE/LICENSE'
     rm 'GPCE/GPCEinstallerC#.sh'
