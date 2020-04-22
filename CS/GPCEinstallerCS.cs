@@ -45,7 +45,7 @@ namespace GPCEinstaller
                     File.AppendAllText(Path, logtext);
                     if (Directory.Exists("GPCE"))
                     {
-                        Directory.Delete("GPCE");
+                        Directory.Delete("GPCE",true);
                     }
                     WriteLine("Cleaned up...\n");
                     logtext = "Cleaned up\n";
@@ -76,6 +76,7 @@ namespace GPCEinstaller
                     File.Delete("GPCE/CS/tc.txt");
                     File.Delete("GPCE/CS/privacy.txt");
                     File.Delete("GPCE/CS/license.txt");
+                    Directory.Delete("GPCE/CS");
                     WriteLine("Freed up storage...\n");
                     logtext = "Freed up storage...\n";
                     File.AppendAllText(Path, logtext);
