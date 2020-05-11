@@ -17,7 +17,5 @@ if [ "$key" = "Y" ] || [ "$key" = "y" ];then
     rm 'GPCE/src/GPCE.cs'
     mv 'GPCE/src/GPCE.exe' 'GPCE/GPCE.exe'
     mv 'GPCE/src/license.txt' 'GPCE/license.txt'
-    mv 'GPCE/src/privacy.txt' 'GPCE/privacy.txt'
-    mv 'GPCE/src/tc.txt' 'GPCE/tc.txt'
     rm -r 'GPCE/src'
 fi

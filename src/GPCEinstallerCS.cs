@@ -64,12 +64,8 @@ namespace GPCEinstaller
 					File.Delete("GPCE/GPCEinstallerCS.exe");
 					File.Delete("GPCE/index.html");
                     File.Copy("GPCE/src/GPCE.exe","GPCE/GPCE.exe");
-                    File.Copy("GPCE/src/tc.txt","GPCE/tc.txt");
-                    File.Copy("GPCE/src/privacy.txt","GPCE/privacy.txt");
                     File.Copy("GPCE/src/license.txt","GPCE/license.txt");
                     File.Delete("GPCE/src/GPCE.exe");
-                    File.Delete("GPCE/src/tc.txt");
-                    File.Delete("GPCE/src/privacy.txt");
                     File.Delete("GPCE/src/license.txt");
                     Directory.Delete("GPCE/src");
                     WriteLine("Freed up storage...\n");

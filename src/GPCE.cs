@@ -42,7 +42,7 @@ namespace GPCE
             WebClient fdl;
             string fdlname;
             string fdlcontent;
-            string tc, privacy, license;
+            string license;
             string extractfilename, extractdir;
             string compressfolder, compressfilename;
             string logtext = "Program successfully launched\n";
@@ -82,8 +82,6 @@ namespace GPCE
                             WriteLine("dir: Displays the path of the current directory that GPCE is running from.");
                             WriteLine("fdl: Downloads a file from the Web to a local file.");
                             WriteLine("contact: Shows contact details to contact me.");
-                            WriteLine("tc: Displays the terms and conditions");
-                            WriteLine("privacy: Displays the privacy policy");
                             WriteLine("license: Displays the license");
                             WriteLine("extract: Extract a zip to a directory");
                             WriteLine("compress: Compress a directory to a zip archive");
@@ -653,46 +651,6 @@ namespace GPCE
                             catch (Exception e)
                             {
                                 WriteLine("Unknown error.");
-                                WriteLine(seeError);
-                                if (ReadKey().Key == ConsoleKey.Y)
-                                    WriteLine(e.Message);
-                                Log(cmdFail, e.Message);
-                                goto MainActivity;
-                            }
-                            Log(input, cmdEx);
-                        }
-                        break;
-                    case "tc":
-                        {
-                            Log(input, cmdEnt);
-                            try
-                            {
-                                tc = ReadAllText("tc.txt");
-                                WriteLine(tc);
-                            } 
-                            catch(Exception e)
-                            {
-                                WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
-                                WriteLine(seeError);
-                                if (ReadKey().Key == ConsoleKey.Y)
-                                    WriteLine(e.Message);
-                                Log(cmdFail, e.Message);
-                                goto MainActivity;
-                            }
-                            Log(input, cmdEx);
-                        }
-                        break;
-                    case "privacy":
-                        {
-                            Log(input, cmdEnt);
-                            try
-                            {
-                                privacy = ReadAllText("privacy.txt");
-                                WriteLine(privacy);
-                            } 
-                            catch(Exception e)
-                            {
-                                WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
