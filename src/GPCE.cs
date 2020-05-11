@@ -1,5 +1,5 @@
 /*GPCE (General Purpose Command Executor - a command line program which can be used for many purposes.*/
-/*Copyright © 2019 Pruthvi Shrikaanth "Blue0Tech"*/
+/*Copyright © 2020 Pruthvi Shrikaanth "Blue0Tech"*/
 using System;
 using System.Net;
 using System.IO;
@@ -15,7 +15,7 @@ namespace GPCE
         private const string cmdEx = " command successfully executed";
         private const string cmdEnt = " command entered";
         private const string ProgramName = "General Purpose Command Executor";
-        private const string ExitMsg = "Terminating... Press any key to exit, Copyright 2019 Pruthvi Shrikaanth";
+        private const string ExitMsg = "Terminating... Press any key to exit, Copyright 2020 Pruthvi Shrikaanth";
         private const string cmdFail = "command failed: ";
         private const string logfilename = "GPCElog.txt";
         private const string par = "Parameter entered";
@@ -47,7 +47,7 @@ namespace GPCE
             string compressfolder, compressfilename;
             string logtext = "Program successfully launched\n";
             AppendAllText(logfilename, logtext);
-            WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
+            WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2020 Pruthvi Shrikaanth", ProgramName);
         /*Main activity*/
         MainActivity:
             do

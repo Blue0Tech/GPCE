@@ -80,7 +80,7 @@ namespace GPCEinstaller
                     logtext = "Cancelled installation of GPCE\n";
                     File.AppendAllText(Path, logtext);
                 }
-                WriteLine("Press any key to exit, copyright 2019 Pruthvi Shrikaanth\n");
+                WriteLine("Press any key to exit, copyright 2020 Pruthvi Shrikaanth\n");
                 ReadKey();
                 logtext = "Program successfully terminated\n";
                 File.AppendAllText(Path, logtext);

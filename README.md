@@ -1,10 +1,10 @@
 # GPCE
-GPCE (General Purpose Command Executor) is a command executor for many purposes, but it is still under development. It is currently available in C# and Python 3. Feel free to report any bugs on the website or to shrikaanthpruthvispareemail@gmail.com.
+GPCE (General Purpose Command Executor) is a command executor for many purposes, but it is still under development. Feel free to report any bugs on the website or to shrikaanthpruthvispareemail@gmail.com.
 
 # How to install
 Download the bash or dotnet installer from https://Blue0Tech.github.io/GPCE/
 
-# Commands and syntax (C# edition)
+# Commands and syntax
 
 ## help
 
@@ -186,26 +186,6 @@ Shows contact information about me.
 
 ---
 
-## tc
-
-Displays terms and conditions.
-
-### syntax
-
-*tc* ENTER
-
----
-
-## privacy
-
-Displays privacy policy.
-
-### syntax
-
-*privacy* ENTER
-
----
-
 ## license
 
 Displays license.
@@ -242,7 +222,7 @@ Compresses a directory into a zip archive.
 
 # Status
 
-GPCE is currently in active development. Work is currently being done on the C# edition, and there is error handling for the whole program. The Python 3 edition is not complete either, but development on that version will be on standby until otherwise stated. The first pre-release (v0.2) is out! See https://github.com/Blue0Tech/GPCE/releases/tag/v0.2
+GPCE is currently in active development. The first pre-release (v0.2) is out! See https://github.com/Blue0Tech/GPCE/releases/tag/v0.2
 
 # Known Issues
 
