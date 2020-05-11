@@ -222,7 +222,7 @@ Compresses a directory into a zip archive.
 
 # Status
 
-GPCE is currently in active development. The first pre-release (v0.2) is out! See https://github.com/Blue0Tech/GPCE/releases/tag/v0.2
+GPCE is currently in active development. The first release (v1.0) is out! See github.com/Blue0Tech/GPCE/releases/tag/v1.0
 
 # Known Issues
 
