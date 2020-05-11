@@ -62,6 +62,7 @@ namespace GPCEinstaller
                     File.Delete("GPCE/GPCEinstallerCS.sh");
                     File.Delete("GPCE/src/GPCEinstallerCS.cs");
 					File.Delete("GPCE/GPCEinstallerCS.exe");
+                    File.Delete("GPCE/LICENSE");
 					File.Delete("GPCE/index.html");
                     File.Copy("GPCE/src/GPCE.exe","GPCE/GPCE.exe");
                     File.Copy("GPCE/src/license.txt","GPCE/license.txt");
