@@ -1,5 +1,5 @@
 /*GPCE (General Purpose Command Executor - a command line program which can be used for many purposes.*/
-/*Copyright © 2019 Pruthvi Shrikaanth "Blue0Tech"*/
+/*Copyright © 2020 Pruthvi Shrikaanth "Blue0Tech"*/
 using System;
 using System.Net;
 using System.IO;
@@ -15,7 +15,7 @@ namespace GPCE
         private const string cmdEx = " command successfully executed";
         private const string cmdEnt = " command entered";
         private const string ProgramName = "General Purpose Command Executor";
-        private const string ExitMsg = "Terminating... Press any key to exit, Copyright 2019 Pruthvi Shrikaanth";
+        private const string ExitMsg = "Terminating... Press any key to exit, Copyright 2020 Pruthvi Shrikaanth";
         private const string cmdFail = "command failed: ";
         private const string logfilename = "GPCElog.txt";
         private const string par = "Parameter entered";
@@ -42,12 +42,12 @@ namespace GPCE
             WebClient fdl;
             string fdlname;
             string fdlcontent;
-            string tc, privacy, license;
+            string license;
             string extractfilename, extractdir;
             string compressfolder, compressfilename;
             string logtext = "Program successfully launched\n";
             AppendAllText(logfilename, logtext);
-            WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2019 Pruthvi Shrikaanth", ProgramName);
+            WriteLine("Welcome to {0}, type help for a list of commands, Copyright 2020 Pruthvi Shrikaanth", ProgramName);
         /*Main activity*/
         MainActivity:
             do
@@ -82,8 +82,6 @@ namespace GPCE
                             WriteLine("dir: Displays the path of the current directory that GPCE is running from.");
                             WriteLine("fdl: Downloads a file from the Web to a local file.");
                             WriteLine("contact: Shows contact details to contact me.");
-                            WriteLine("tc: Displays the terms and conditions");
-                            WriteLine("privacy: Displays the privacy policy");
                             WriteLine("license: Displays the license");
                             WriteLine("extract: Extract a zip to a directory");
                             WriteLine("compress: Compress a directory to a zip archive");
@@ -653,46 +651,6 @@ namespace GPCE
                             catch (Exception e)
                             {
                                 WriteLine("Unknown error.");
-                                WriteLine(seeError);
-                                if (ReadKey().Key == ConsoleKey.Y)
-                                    WriteLine(e.Message);
-                                Log(cmdFail, e.Message);
-                                goto MainActivity;
-                            }
-                            Log(input, cmdEx);
-                        }
-                        break;
-                    case "tc":
-                        {
-                            Log(input, cmdEnt);
-                            try
-                            {
-                                tc = ReadAllText("tc.txt");
-                                WriteLine(tc);
-                            } 
-                            catch(Exception e)
-                            {
-                                WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
-                                WriteLine(seeError);
-                                if (ReadKey().Key == ConsoleKey.Y)
-                                    WriteLine(e.Message);
-                                Log(cmdFail, e.Message);
-                                goto MainActivity;
-                            }
-                            Log(input, cmdEx);
-                        }
-                        break;
-                    case "privacy":
-                        {
-                            Log(input, cmdEnt);
-                            try
-                            {
-                                privacy = ReadAllText("privacy.txt");
-                                WriteLine(privacy);
-                            } 
-                            catch(Exception e)
-                            {
-                                WriteLine("Critical error. Please make sure that you have installed the program correctly and from trusted sources.");
                                 WriteLine(seeError);
                                 if (ReadKey().Key == ConsoleKey.Y)
                                     WriteLine(e.Message);
