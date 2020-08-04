@@ -1,5 +1,5 @@
 # GPCE
-GPCE (General Purpose Command Executor) is a command executor for many purposes, but it is still under development. Feel free to report any bugs on the website or to shrikaanthpruthvispareemail@gmail.com.
+GPCE (General Purpose Command Executor) is a command executor for many purposes, but it is no longer under development.
 
 # How to install
 Download the bash or dotnet installer from https://Blue0Tech.github.io/GPCE/
@@ -222,7 +222,7 @@ Compresses a directory into a zip archive.
 
 # Status
 
-GPCE is currently in active development. The first release (v1.0) is out! See https://github.com/Blue0Tech/GPCE/releases/tag/v1.0
+GPCE is no longer in active development. The first release (v1.0) is out. See https://github.com/Blue0Tech/GPCE/releases/tag/v1.0
 
 # Known Issues
 
